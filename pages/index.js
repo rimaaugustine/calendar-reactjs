@@ -4,13 +4,15 @@ import Head from "next/head";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Card, CardActions, CardTitle, CardText } from "material-ui/Card";
 import RaisedButton from "material-ui/RaisedButton";
-import NavigationChevronLeft from 'material-ui/svg-icons/navigation/chevron-left';
-import NavigationChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
+import NavigationChevronLeft from "material-ui/svg-icons/navigation/chevron-left";
+import NavigationChevronRight from "material-ui/svg-icons/navigation/chevron-right";
+
 //components
 import MenuBar from "../components/menuBar";
 import { Tile } from "../components/tile";
 import inherits from "babel-runtime/helpers/inherits";
 import moment from "moment";
+import DialogEvent from "../components/dialog";
 
 class Index extends React.Component {
   constructor() {
@@ -18,40 +20,44 @@ class Index extends React.Component {
     const today = new Date();
     this.state = {
       year: today.getFullYear(),
-      month: today.getMonth()
+      month: today.getMonth(),
+      open: false
     };
   }
 
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleCloseChange = () => {
+    this.setState({ open: false });
+  };
+
   prev = () => {
-        this.setState({
-          year: this.state.month
-            ? this.state.year
-            : this.state.year - 1, 
-          month : (this.state.month + 11 ) % 12
-        });
-       
-   
-  }
+    this.setState({
+      year: this.state.month ? this.state.year : this.state.year - 1,
+      month: (this.state.month + 11) % 12
+    });
+  };
 
   next = () => {
     this.setState({
-        year: this.state.month
-          ? this.state.year
-          : this.state.year + 1, 
-        month : (this.state.month + 13 ) % 12
-      });
-      
-  }
-
+      year: this.state.month ? this.state.year : this.state.year + 1,
+      month: (this.state.month + 13) % 12
+    });
+  };
 
   today = () => {
     const today = new Date();
     this.setState({
-        year: today.getFullYear(),
-        month : today.getMonth()
-      });
-      
-  }
+      year: today.getFullYear(),
+      month: today.getMonth()
+    });
+  };
+
+  createClickHandle = idx => {
+    console.log("success");
+  };
 
   render() {
     const { year, month } = this.state;
@@ -92,41 +98,48 @@ class Index extends React.Component {
             height: 100vmin;
             max-height: 400px;
             box-sizing: border-box;
-        
           }
         `}</style>
         <MuiThemeProvider>
           <MenuBar />
-          <Card style={{ height: 800, margin:5 }}>
-          <CardTitle
-            title={months}
-            subtitle={this.state.year}
-            />
-           
+          <Card style={{ height: 800, margin: 5 }}>
+            <CardTitle title={months} subtitle={this.state.year} />
             <div className="tile-day">
-              {weekdays.map((name, idx) => <Tile value={name+ "." } key={idx} style={{fontSize:13}} index={idx}/>)}
+              {weekdays.map((name, idx) => (
+                <Tile
+                  value={name + "."}
+                  key={idx}
+                  style={{ fontSize: 13 }}
+                  index={idx}
+                />
+              ))}
               {[...Array(42).keys()].map((_, idx) => (
-                <Tile value={dateNum(idx)} key={idx} />
+                <Tile
+                  value={dateNum(idx)}
+                  key={idx}
+                  onClick={this.handleOpen}
+                />
               ))}
             </div>
-            <br/>>
+            <br />>
             <CardActions>
-              
               <RaisedButton
-                 backgroundColor="#d05ce3"
+                backgroundColor="violet"
                 onClick={this.prev}
-                icon={<NavigationChevronLeft />}
-               />
-                <RaisedButton
-                label="Today"
-                onClick={this.today}
-               />
-              <RaisedButton backgroundColor="#d05ce3"
-              onClick={this.next}
-              icon={<NavigationChevronRight />}
+                icon={<NavigationChevronLeft color="white" />}
+              />
+              <RaisedButton label="Today" onClick={this.today} />
+              <RaisedButton
+                backgroundColor="violet"
+                onClick={this.next}
+                icon={<NavigationChevronRight color="white" />}
               />
             </CardActions>
           </Card>
+          <DialogEvent
+            open={this.state.open}
+            onHandleClose={this.handleCloseChange}
+          />
         </MuiThemeProvider>
       </div>
     );
