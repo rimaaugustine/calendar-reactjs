@@ -6,19 +6,22 @@ import Form from './form'
 
 class DialogEvent extends React.Component{
 constructor(props){
-    super(props)
+    super(props);
+  
     this.handleClose = this.handleClose.bind(this)
 }
 
+
+
 handleClose (e) {
-    this.props.onHanldeClose(e)
+    this.props.onHandleClose(e)
+    console.log()
 }
 
     render(){
         const actions = [
             <FlatButton
               label="Cancel"
-              secondary={true}
               onClick={this.handleClose}
             />,
             <FlatButton
@@ -37,7 +40,6 @@ handleClose (e) {
           autoScrollBodyContent={true}
         >
         <Form />
-          
         </Dialog>)
     }
 }

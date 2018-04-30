@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+
 //material ui
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { Card, CardActions, CardTitle, CardText } from "material-ui/Card";
@@ -31,6 +32,7 @@ class Index extends React.Component {
 
   handleCloseChange = () => {
     this.setState({ open: false });
+    console.log("parent")
   };
 
   prev = () => {

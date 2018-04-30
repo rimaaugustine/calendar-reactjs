@@ -8,13 +8,13 @@ import Weather from "./weather";
 class MenuBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { open: false };
+    this.state = { drawerOpen: false };
 
     this.switchDrawer = this.switchDrawer.bind(this)
   }
 
   handleClick = () => {
-    this.setState({ open: !this.state.open })
+    this.setState({ drawerOpen: !this.state.open })
   };
 
   switchDrawer() {
@@ -37,7 +37,7 @@ class MenuBar extends React.Component {
           }
           style={{ backgroundColor: "purple" }}
         />
-        <Weather open={this.state.open} switchDrawer={this.switchDrawer}/>
+        <Weather open={this.state.drawerOpen} switchDrawer={this.switchDrawer}/>
       </div>
     );
   }
