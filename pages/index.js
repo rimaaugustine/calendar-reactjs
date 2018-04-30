@@ -22,12 +22,16 @@ class Index extends React.Component {
     this.state = {
       year: today.getFullYear(),
       month: today.getMonth(),
+      date: '',
+      events: [{"id":1, "date":"30/4/2018", "name":"Dinner"}],
       open: false
     };
   }
 
-  handleOpen = () => {
-    this.setState({ open: true });
+  handleOpen = (today) => {
+    const month = this.state.month + 1
+    this.setState({ open: true, date: today + "/" + month  + "/" + this.state.year  });
+    
   };
 
   handleCloseChange = () => {
@@ -60,6 +64,13 @@ class Index extends React.Component {
   createClickHandle = idx => {
     console.log("success");
   };
+  
+
+  addNewEvent = (event) => {
+    this.setState({
+      events: [...this.state.events, event]
+    })
+  }
 
   render() {
     const { year, month } = this.state;
@@ -119,7 +130,7 @@ class Index extends React.Component {
                 <Tile
                   value={dateNum(idx)}
                   key={idx}
-                  onClick={this.handleOpen}
+                  onClick={() => this.handleOpen(dateNum(idx), idx)}
                 />
               ))}
             </div>
@@ -139,8 +150,11 @@ class Index extends React.Component {
             </CardActions>
           </Card>
           <DialogEvent
+            events={this.state.events}
             open={this.state.open}
             onHandleClose={this.handleCloseChange}
+            date={this.state.date}
+            addNewEvent={this.addNewEvent}
           />
         </MuiThemeProvider>
       </div>

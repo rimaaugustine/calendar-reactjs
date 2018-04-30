@@ -82,8 +82,14 @@ module.exports =
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_material_ui_Dialog___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_material_ui_Dialog__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton__ = __webpack_require__("material-ui/FlatButton");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form__ = __webpack_require__("./components/form.js");
-var _jsxFileName = '/Users/rimaaugustine/Code/calender-reactjs/components/dialog.js';
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_FloatingActionButton__ = __webpack_require__("material-ui/FloatingActionButton");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_FloatingActionButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_FloatingActionButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_svg_icons_content_add__ = __webpack_require__("material-ui/svg-icons/content/add");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_svg_icons_content_add___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_svg_icons_content_add__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Divider__ = __webpack_require__("material-ui/Divider");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_Divider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_Divider__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form__ = __webpack_require__("./components/form.js");
+var _jsxFileName = "/Users/rimaaugustine/Code/calendar-reactjs/components/dialog.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -98,6 +104,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
+
+
 var DialogEvent = function (_React$Component) {
   _inherits(DialogEvent, _React$Component);
 
@@ -106,55 +115,132 @@ var DialogEvent = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (DialogEvent.__proto__ || Object.getPrototypeOf(DialogEvent)).call(this, props));
 
+    _this.addForm = function (object) {
+      var arr = _this.state.data;
+      arr.push(object);
+      _this.setState({ data: arr });
+      // let arrString = JSON.stringify(arr);
+      // localStorage.setItem("data", arrString);
+      // console.log("click");
+    };
+
+    _this.state = {
+      data: []
+    };
+    //this.addForm = this.addForm.bind(this)
     _this.handleClose = _this.handleClose.bind(_this);
     return _this;
   }
 
   _createClass(DialogEvent, [{
-    key: 'handleClose',
+    key: "handleClose",
     value: function handleClose(e) {
       this.props.onHandleClose(e);
       console.log();
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
-      var actions = [__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton___default.a, {
-        label: 'Cancel',
-        onClick: this.handleClose,
-        __source: {
+      var _this2 = this;
+
+      var actions = [__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton___default.a, { label: "Cancel", secondary: true, onClick: this.handleClose, __source: {
           fileName: _jsxFileName,
-          lineNumber: 23
-        }
-      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_FlatButton___default.a, {
-        label: 'Submit',
-        primary: true,
-        disabled: true,
-        onClick: this.handleClose,
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 27
+          lineNumber: 36
         }
       })];
+      console.log(this.props.date);
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1_material_ui_Dialog___default.a,
         {
-          title: 'New Event',
+          title: this.props.date,
           actions: actions,
           modal: true,
           open: this.props.open,
           autoScrollBodyContent: true,
+          titleStyle: { margin: 0, paddingBottom: 0 },
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 35
+            lineNumber: 40
           }
         },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__form__["a" /* default */], {
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "div",
+          { style: { display: "flex", justifyContent: "flex-end" }, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 48
+            }
+          },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_3_material_ui_FloatingActionButton___default.a,
+            {
+              mini: true,
+              secondary: true,
+              onClick: this.addForm.bind(),
+              style: { margin: 2 },
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 49
+              }
+            },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_svg_icons_content_add___default.a, {
+              __source: {
+                fileName: _jsxFileName,
+                lineNumber: 55
+              }
+            })
+          )
+        ),
+        this.state.data.map(function (item, i) {
+          return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            __WEBPACK_IMPORTED_MODULE_6__form__["a" /* default */],
+            { key: i, index: i, addNewEvent: _this2.props.addNewEvent, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 59
+              }
+            },
+            item
+          );
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_Divider___default.a, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 42
+            lineNumber: 63
           }
-        })
+        }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "h4",
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 64
+            }
+          },
+          "List Events"
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          "ul",
+          {
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 65
+            }
+          },
+          this.props.events.filter(function (item) {
+            console.log(item.date, _this2.props.date);
+            return item.date === _this2.props.date; //more than one line
+          }).map(function (item, index) {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "li",
+              { key: index, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 71
+                }
+              },
+              item.name,
+              " "
+            );
+          })
+        )
       );
     }
   }]);
@@ -180,9 +266,17 @@ var DialogEvent = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_SelectField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_SelectField__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem__ = __webpack_require__("material-ui/MenuItem");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem__);
-var _jsxFileName = "/Users/rimaaugustine/Code/calender-reactjs/components/form.js";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_FlatButton__ = __webpack_require__("material-ui/FlatButton");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_material_ui_FlatButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_material_ui_FlatButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_styles_colors__ = __webpack_require__("material-ui/styles/colors");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_material_ui_styles_colors___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_material_ui_styles_colors__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Card__ = __webpack_require__("material-ui/Card");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_material_ui_Card___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_material_ui_Card__);
+var _jsxFileName = "/Users/rimaaugustine/Code/calendar-reactjs/components/form.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -196,137 +290,211 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
+
+
+
+
 var Form = function (_Component) {
   _inherits(Form, _Component);
 
-  function Form() {
+  function Form(props) {
     _classCallCheck(this, Form);
 
-    return _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+
+    _this.onTextChange = function (e) {
+      e.persist();
+      var value = e.target.value;
+      var name = e.target.name;
+      console.log(name);
+      _this.setState(_defineProperty({}, name, value));
+      //console.log([name])
+    };
+
+    _this.handleExpandChange = function (expanded) {
+      _this.setState({ expanded: expanded });
+    };
+
+    _this.handleExpand = function () {
+      _this.setState({ expanded: true });
+    };
+
+    _this.handleReduce = function () {
+      _this.setState({ expanded: false });
+    };
+
+    _this.state = {
+      name: "",
+      description: "",
+      location: "",
+      startTime: "",
+      endTime: "",
+      category: "",
+      date: "29/4/2018",
+      expanded: false
+    };
+    return _this;
   }
 
   _createClass(Form, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var formIndex = this.props.index + 1;
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 10
+            lineNumber: 56
           }
         },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { floatingLabelText: "Name", secondary: true, __source: {
-            fileName: _jsxFileName,
-            lineNumber: 11
-          }
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 12
-          }
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { floatingLabelText: "Description", fullWidth: true, __source: {
-            fileName: _jsxFileName,
-            lineNumber: 13
-          }
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 14
-          }
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { floatingLabelText: "Location", __source: {
-            fileName: _jsxFileName,
-            lineNumber: 15
-          }
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 16
-          }
-        }),
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "div",
-          { style: { display: "Flex", flexWrap: "wrap" }, __source: {
+          __WEBPACK_IMPORTED_MODULE_7_material_ui_Card__["Card"],
+          { style: { backgroundColor: __WEBPACK_IMPORTED_MODULE_6_material_ui_styles_colors__["purple50"] }, expanded: this.state.expanded, onExpandChange: this.handleExpandChange, __source: {
               fileName: _jsxFileName,
-              lineNumber: 17
+              lineNumber: 57
             }
           },
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_Card__["CardHeader"], {
+            subtitle: "Event-" + formIndex,
+            actAsExpander: true,
+            showExpandableButton: true,
+            style: { paddingBottom: 0, marginBottom: 0 },
+            __source: {
+              fileName: _jsxFileName,
+              lineNumber: 58
+            }
+          }),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
-            { style: { marginRight: 8 }, __source: {
+            __WEBPACK_IMPORTED_MODULE_7_material_ui_Card__["CardText"],
+            { style: { paddingTop: 0, marginTop: 0 }, expandable: true, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 18
+                lineNumber: 64
               }
             },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_TimePicker___default.a, { floatingLabelText: "Start Time", __source: {
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, {
+              floatingLabelText: "Name",
+              name: "name",
+              onChange: this.onTextChange,
+              value: this.state.name,
+              secondary: true,
+              __source: {
                 fileName: _jsxFileName,
-                lineNumber: 19
+                lineNumber: 65
               }
-            })
+            }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { floatingLabelText: "Description", fullWidth: true, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 73
+              }
+            }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_material_ui_TextField___default.a, { floatingLabelText: "Location", __source: {
+                fileName: _jsxFileName,
+                lineNumber: 75
+              }
+            }),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "div",
+              { style: { display: "Flex", flexWrap: "wrap" }, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 77
+                }
+              },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { style: { marginRight: 8 }, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 78
+                  }
+                },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_TimePicker___default.a, { floatingLabelText: "Start Time", __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 79
+                  }
+                })
+              ),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                {
+                  __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 81
+                  }
+                },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_TimePicker___default.a, { floatingLabelText: "End Time", __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 82
+                  }
+                })
+              )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              __WEBPACK_IMPORTED_MODULE_3_material_ui_SelectField___default.a,
+              { floatingLabelText: "Category", autoWidth: true, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 86
+                }
+              },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { value: 1, primaryText: "Work", __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 87
+                }
+              }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { value: 2, primaryText: "School", __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 88
+                }
+              }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { value: 3, primaryText: "Fun", __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 89
+                }
+              }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { value: 4, primaryText: "Family", __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 90
+                }
+              })
+            )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
+            __WEBPACK_IMPORTED_MODULE_7_material_ui_Card__["CardActions"],
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 21
+                lineNumber: 93
               }
             },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_material_ui_TimePicker___default.a, { floatingLabelText: "End Time", __source: {
-                fileName: _jsxFileName,
-                lineNumber: 22
-              }
-            })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "div",
+              { style: { display: "flex", justifyContent: "flex-end" }, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 94
+                }
+              },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_FlatButton___default.a, { style: { marginRight: 5 }, label: "Close", backgroundColor: __WEBPACK_IMPORTED_MODULE_6_material_ui_styles_colors__["purple50"], onClick: this.handleReduce, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 95
+                }
+              }),
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_FlatButton___default.a, {
+                label: "Submit",
+                backgroundColor: "violet",
+                onClick: function onClick(e) {
+                  _this2.props.addNewEvent(_this2.state);
+                  console.log(e);
+                },
+                __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 96
+                }
+              })
+            )
           )
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 25
-          }
-        }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          __WEBPACK_IMPORTED_MODULE_3_material_ui_SelectField___default.a,
-          {
-            floatingLabelText: "Category",
-            autoWidth: true,
-            __source: {
-              fileName: _jsxFileName,
-              lineNumber: 26
-            }
-          },
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { value: 1, primaryText: "Work", __source: {
-              fileName: _jsxFileName,
-              lineNumber: 30
-            }
-          }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { value: 2, primaryText: "School", __source: {
-              fileName: _jsxFileName,
-              lineNumber: 31
-            }
-          }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { value: 3, primaryText: "Fun", __source: {
-              fileName: _jsxFileName,
-              lineNumber: 32
-            }
-          }),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_MenuItem___default.a, { value: 4, primaryText: "Family", __source: {
-              fileName: _jsxFileName,
-              lineNumber: 33
-            }
-          })
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 35
-          }
-        })
+        )
       );
     }
   }]);
@@ -351,7 +519,7 @@ var Form = function (_Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_svg_icons_image_wb_sunny__ = __webpack_require__("material-ui/svg-icons/image/wb-sunny");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_svg_icons_image_wb_sunny___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_svg_icons_image_wb_sunny__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__weather__ = __webpack_require__("./components/weather.js");
-var _jsxFileName = "/Users/rimaaugustine/Code/calender-reactjs/components/menuBar.js";
+var _jsxFileName = "/Users/rimaaugustine/Code/calendar-reactjs/components/menuBar.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -451,7 +619,7 @@ var MenuBar = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_styled_jsx_style___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_styled_jsx_style__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
-var _jsxFileName = '/Users/rimaaugustine/Code/calender-reactjs/components/tile.js';
+var _jsxFileName = '/Users/rimaaugustine/Code/calendar-reactjs/components/tile.js';
 
 
 
@@ -472,7 +640,7 @@ var Tile = function Tile(_ref) {
     },
     __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_0_styled_jsx_style___default.a, {
       styleId: '1451441760',
-      css: '.tile.jsx-1451441760{width:14%;-webkit-flex:0 0 0 0 0 0 33.333333%;-ms-flex:0 0 0 0 0 0 33.333333%;flex:0 0 0 0 0 0 33.333333%;box-sizing:border-box;border:solid purple;font-size:3vh;font-weight:bold;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;border-width:2px;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvdGlsZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNb0IsQUFHdUIsVUFDa0IsZ0dBQ04sc0JBQ0Ysb0JBQ04sY0FDRyxpQkFDSiwwRUFDTSw2RkFDSSxtR0FDTixpQkFFbkIiLCJmaWxlIjoiY29tcG9uZW50cy90aWxlLmpzIiwic291cmNlUm9vdCI6Ii9Vc2Vycy9yaW1hYXVndXN0aW5lL0NvZGUvY2FsZW5kZXItcmVhY3RqcyIsInNvdXJjZXNDb250ZW50IjpbIlxuZXhwb3J0IGNvbnN0IFRpbGUgPSAoeyB2YWx1ZSwgaW5kZXgsIG9uQ2xpY2t9KSA9PiB7XG4gICBjb25zdCBoZWlnaHQgPSBgICAke2luZGV4IDwgOCA/ICcxMCUnIDogJzE1LjMzMzMzMyUnfWBcbiAgIGNvbnN0IGJhY2tncm91bmRDb2xvciA9IGAgICR7aW5kZXggPCA4ID8gJyNlOGFmZTgnOiAnd2hpdGUnfWBcbiAgICByZXR1cm4gKFxuICAgICAgPGRpdiBjbGFzc05hbWU9J3RpbGUnIG9uQ2xpY2s9e29uQ2xpY2t9IHN0eWxlPXt7aGVpZ2h0LCBiYWNrZ3JvdW5kQ29sb3J9fSA+XG4gICAgICAgIDxzdHlsZSBqc3g+e2BcbiAgICAgICAgICAudGlsZSB7XG4gICAgICAgICAgICB3aWR0aDogMTQlO1xuICAgICAgICAgICAgZmxleDogMCAwIDAgMCAwIDAgMzMuMzMzMzMzJTtcbiAgICAgICAgICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgICAgICAgICBib3JkZXI6IHNvbGlkIHB1cnBsZTtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogM3ZoO1xuICAgICAgICAgICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAgICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgICAgICAgICAgYm9yZGVyLXdpZHRoOiAycHg7XG4gICAgICAgICAgICBcbiAgICAgICAgICB9XG4gICAgICAgIGB9PC9zdHlsZT5cbiAgICAgICAgXG4gICAgICAgIHt2YWx1ZX1cbiAgICAgIDwvZGl2PlxuICAgIClcbiAgfVxuXG4gIl19 */\n/*@ sourceURL=components/tile.js */'
+      css: '.tile.jsx-1451441760{width:14%;-webkit-flex:0 0 0 0 0 0 33.333333%;-ms-flex:0 0 0 0 0 0 33.333333%;flex:0 0 0 0 0 0 33.333333%;box-sizing:border-box;border:solid purple;font-size:3vh;font-weight:bold;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;border-width:2px;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvdGlsZS5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFNb0IsQUFHdUIsVUFDa0IsZ0dBQ04sc0JBQ0Ysb0JBQ04sY0FDRyxpQkFDSiwwRUFDTSw2RkFDSSxtR0FDTixpQkFFbkIiLCJmaWxlIjoiY29tcG9uZW50cy90aWxlLmpzIiwic291cmNlUm9vdCI6Ii9Vc2Vycy9yaW1hYXVndXN0aW5lL0NvZGUvY2FsZW5kYXItcmVhY3RqcyIsInNvdXJjZXNDb250ZW50IjpbIlxuZXhwb3J0IGNvbnN0IFRpbGUgPSAoeyB2YWx1ZSwgaW5kZXgsIG9uQ2xpY2t9KSA9PiB7XG4gICBjb25zdCBoZWlnaHQgPSBgICAke2luZGV4IDwgOCA/ICcxMCUnIDogJzE1LjMzMzMzMyUnfWBcbiAgIGNvbnN0IGJhY2tncm91bmRDb2xvciA9IGAgICR7aW5kZXggPCA4ID8gJyNlOGFmZTgnOiAnd2hpdGUnfWBcbiAgICByZXR1cm4gKFxuICAgICAgPGRpdiBjbGFzc05hbWU9J3RpbGUnIG9uQ2xpY2s9e29uQ2xpY2t9IHN0eWxlPXt7aGVpZ2h0LCBiYWNrZ3JvdW5kQ29sb3J9fSA+XG4gICAgICAgIDxzdHlsZSBqc3g+e2BcbiAgICAgICAgICAudGlsZSB7XG4gICAgICAgICAgICB3aWR0aDogMTQlO1xuICAgICAgICAgICAgZmxleDogMCAwIDAgMCAwIDAgMzMuMzMzMzMzJTtcbiAgICAgICAgICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgICAgICAgICBib3JkZXI6IHNvbGlkIHB1cnBsZTtcbiAgICAgICAgICAgIGZvbnQtc2l6ZTogM3ZoO1xuICAgICAgICAgICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICAgICAgICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgICAgICAgICAgYm9yZGVyLXdpZHRoOiAycHg7XG4gICAgICAgICAgICBcbiAgICAgICAgICB9XG4gICAgICAgIGB9PC9zdHlsZT5cbiAgICAgICAgXG4gICAgICAgIHt2YWx1ZX1cbiAgICAgIDwvZGl2PlxuICAgIClcbiAgfVxuXG4gIl19 */\n/*@ sourceURL=components/tile.js */'
     }),
     value
   );
@@ -492,7 +660,7 @@ var Tile = function Tile(_ref) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_material_ui_AppBar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_material_ui_AppBar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_svg_icons_image_wb_sunny__ = __webpack_require__("material-ui/svg-icons/image/wb-sunny");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_material_ui_svg_icons_image_wb_sunny___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_material_ui_svg_icons_image_wb_sunny__);
-var _jsxFileName = "/Users/rimaaugustine/Code/calender-reactjs/components/weather.js";
+var _jsxFileName = "/Users/rimaaugustine/Code/calendar-reactjs/components/weather.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -585,7 +753,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_moment__ = __webpack_require__("moment");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_dialog__ = __webpack_require__("./components/dialog.js");
-var _jsxFileName = "/Users/rimaaugustine/Code/calender-reactjs/pages/index.js";
+var _jsxFileName = "/Users/rimaaugustine/Code/calendar-reactjs/pages/index.js";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -630,6 +798,8 @@ var Index = function (_React$Component) {
     _this.state = {
       year: today.getFullYear(),
       month: today.getMonth(),
+      date: '',
+      events: [{ "id": 1, "date": "30/4/2018", "name": "Dinner" }],
       open: false
     };
     return _this;
@@ -666,7 +836,7 @@ var Index = function (_React$Component) {
           className: "jsx-2296073262",
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 83
+            lineNumber: 94
           }
         },
         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
@@ -674,7 +844,7 @@ var Index = function (_React$Component) {
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 84
+              lineNumber: 95
             }
           },
           __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
@@ -683,7 +853,7 @@ var Index = function (_React$Component) {
               className: "jsx-2296073262",
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 85
+                lineNumber: 96
               }
             },
             "ReDI Calender"
@@ -695,38 +865,38 @@ var Index = function (_React$Component) {
             className: "jsx-2296073262",
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 86
+              lineNumber: 97
             }
           })
         ),
         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_0_styled_jsx_style___default.a, {
           styleId: "2296073262",
-          css: "h1.jsx-2296073262{text-align:center;}.tile-day.jsx-2296073262{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;height:100vmin;max-height:400px;box-sizing:border-box;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhZ2VzL2luZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTJGb0IsQUFHK0IsQUFHTCxrQkFGZix3REFHaUIseURBQ1EsbUdBQ1IsZUFDRSxpQkFDSyxzQkFDeEIiLCJmaWxlIjoicGFnZXMvaW5kZXguanMiLCJzb3VyY2VSb290IjoiL1VzZXJzL3JpbWFhdWd1c3RpbmUvQ29kZS9jYWxlbmRlci1yZWFjdGpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gXCJyZWFjdFwiO1xuaW1wb3J0IEhlYWQgZnJvbSBcIm5leHQvaGVhZFwiO1xuXG4vL21hdGVyaWFsIHVpXG5pbXBvcnQgTXVpVGhlbWVQcm92aWRlciBmcm9tIFwibWF0ZXJpYWwtdWkvc3R5bGVzL011aVRoZW1lUHJvdmlkZXJcIjtcbmltcG9ydCB7IENhcmQsIENhcmRBY3Rpb25zLCBDYXJkVGl0bGUsIENhcmRUZXh0IH0gZnJvbSBcIm1hdGVyaWFsLXVpL0NhcmRcIjtcbmltcG9ydCBSYWlzZWRCdXR0b24gZnJvbSBcIm1hdGVyaWFsLXVpL1JhaXNlZEJ1dHRvblwiO1xuaW1wb3J0IE5hdmlnYXRpb25DaGV2cm9uTGVmdCBmcm9tIFwibWF0ZXJpYWwtdWkvc3ZnLWljb25zL25hdmlnYXRpb24vY2hldnJvbi1sZWZ0XCI7XG5pbXBvcnQgTmF2aWdhdGlvbkNoZXZyb25SaWdodCBmcm9tIFwibWF0ZXJpYWwtdWkvc3ZnLWljb25zL25hdmlnYXRpb24vY2hldnJvbi1yaWdodFwiO1xuXG4vL2NvbXBvbmVudHNcbmltcG9ydCBNZW51QmFyIGZyb20gXCIuLi9jb21wb25lbnRzL21lbnVCYXJcIjtcbmltcG9ydCB7IFRpbGUgfSBmcm9tIFwiLi4vY29tcG9uZW50cy90aWxlXCI7XG5pbXBvcnQgaW5oZXJpdHMgZnJvbSBcImJhYmVsLXJ1bnRpbWUvaGVscGVycy9pbmhlcml0c1wiO1xuaW1wb3J0IG1vbWVudCBmcm9tIFwibW9tZW50XCI7XG5pbXBvcnQgRGlhbG9nRXZlbnQgZnJvbSBcIi4uL2NvbXBvbmVudHMvZGlhbG9nXCI7XG5cbmNsYXNzIEluZGV4IGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgc3VwZXIoKTtcbiAgICBjb25zdCB0b2RheSA9IG5ldyBEYXRlKCk7XG4gICAgdGhpcy5zdGF0ZSA9IHtcbiAgICAgIHllYXI6IHRvZGF5LmdldEZ1bGxZZWFyKCksXG4gICAgICBtb250aDogdG9kYXkuZ2V0TW9udGgoKSxcbiAgICAgIG9wZW46IGZhbHNlXG4gICAgfTtcbiAgfVxuXG4gIGhhbmRsZU9wZW4gPSAoKSA9PiB7XG4gICAgdGhpcy5zZXRTdGF0ZSh7IG9wZW46IHRydWUgfSk7XG4gIH07XG5cbiAgaGFuZGxlQ2xvc2VDaGFuZ2UgPSAoKSA9PiB7XG4gICAgdGhpcy5zZXRTdGF0ZSh7IG9wZW46IGZhbHNlIH0pO1xuICAgIGNvbnNvbGUubG9nKFwicGFyZW50XCIpXG4gIH07XG5cbiAgcHJldiA9ICgpID0+IHtcbiAgICB0aGlzLnNldFN0YXRlKHtcbiAgICAgIHllYXI6IHRoaXMuc3RhdGUubW9udGggPyB0aGlzLnN0YXRlLnllYXIgOiB0aGlzLnN0YXRlLnllYXIgLSAxLFxuICAgICAgbW9udGg6ICh0aGlzLnN0YXRlLm1vbnRoICsgMTEpICUgMTJcbiAgICB9KTtcbiAgfTtcblxuICBuZXh0ID0gKCkgPT4ge1xuICAgIHRoaXMuc2V0U3RhdGUoe1xuICAgICAgeWVhcjogdGhpcy5zdGF0ZS5tb250aCA/IHRoaXMuc3RhdGUueWVhciA6IHRoaXMuc3RhdGUueWVhciArIDEsXG4gICAgICBtb250aDogKHRoaXMuc3RhdGUubW9udGggKyAxMykgJSAxMlxuICAgIH0pO1xuICB9O1xuXG4gIHRvZGF5ID0gKCkgPT4ge1xuICAgIGNvbnN0IHRvZGF5ID0gbmV3IERhdGUoKTtcbiAgICB0aGlzLnNldFN0YXRlKHtcbiAgICAgIHllYXI6IHRvZGF5LmdldEZ1bGxZZWFyKCksXG4gICAgICBtb250aDogdG9kYXkuZ2V0TW9udGgoKVxuICAgIH0pO1xuICB9O1xuXG4gIGNyZWF0ZUNsaWNrSGFuZGxlID0gaWR4ID0+IHtcbiAgICBjb25zb2xlLmxvZyhcInN1Y2Nlc3NcIik7XG4gIH07XG5cbiAgcmVuZGVyKCkge1xuICAgIGNvbnN0IHsgeWVhciwgbW9udGggfSA9IHRoaXMuc3RhdGU7XG4gICAgY29uc3QgZGF0ZSA9IG1vbWVudChbeWVhciwgbW9udGhdKTtcbiAgICBjb25zb2xlLmxvZyhcInllYXJcIiwgeWVhciwgXCJtb250aFwiLCBtb250aCwgXCJkYXRlXCIsIGRhdGUpO1xuICAgIGNvbnN0IHdlZWtkYXlzID0gbW9tZW50LndlZWtkYXlzU2hvcnQoKTtcbiAgICBjb25zdCBtb250aHMgPSBtb21lbnQubW9udGhzKG1vbnRoKTtcbiAgICBjb25zb2xlLmxvZyhcIndlZWtkYXlzXCIsIHdlZWtkYXlzKTtcbiAgICBjb25zdCBsYXN0RGF0ZSA9IG5ldyBEYXRlKHllYXIsIG1vbnRoICsgMSwgMCkuZ2V0RGF0ZSgpOyAvLzMwXG4gICAgY29uc29sZS5sb2cobGFzdERhdGUpO1xuICAgIGNvbnN0IG9mZnNldCA9IGRhdGUud2Vla2RheSgpOyAvLyBudW0gb2Ygd2Vla2RheVxuICAgIGNvbnNvbGUubG9nKG9mZnNldCk7XG4gICAgLy9pbmRleCA9IDAgLi4gNDFcbiAgICBjb25zdCBkYXRlTnVtID0gaW5kZXggPT4ge1xuICAgICAgaWYgKG9mZnNldCA8PSBpbmRleCAmJiBpbmRleCA8IG9mZnNldCArIGxhc3REYXRlKSB7XG4gICAgICAgIHJldHVybiBpbmRleCAtIG9mZnNldCArIDE7XG4gICAgICB9XG4gICAgfTtcblxuICAgIHJldHVybiAoXG4gICAgICA8ZGl2PlxuICAgICAgICA8SGVhZD5cbiAgICAgICAgICA8dGl0bGU+UmVESSBDYWxlbmRlcjwvdGl0bGU+XG4gICAgICAgICAgPG1ldGFcbiAgICAgICAgICAgIG5hbWU9XCJ2aWV3cG9ydFwiXG4gICAgICAgICAgICBjb250ZW50PVwiaW5pdGlhbC1zY2FsZT0xLjAsIHdpZHRoPWRldmljZS13aWR0aFwiXG4gICAgICAgICAgICBrZXk9XCJ2aWV3cG9ydFwiXG4gICAgICAgICAgLz5cbiAgICAgICAgPC9IZWFkPlxuICAgICAgICA8c3R5bGUganN4PntgXG4gICAgICAgICAgaDEge1xuICAgICAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgICAgICAgIH1cbiAgICAgICAgICAudGlsZS1kYXkge1xuICAgICAgICAgICAgZGlzcGxheTogZmxleDtcbiAgICAgICAgICAgIGZsZXgtd3JhcDogd3JhcDtcbiAgICAgICAgICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgICAgICAgICAgaGVpZ2h0OiAxMDB2bWluO1xuICAgICAgICAgICAgbWF4LWhlaWdodDogNDAwcHg7XG4gICAgICAgICAgICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xuICAgICAgICAgIH1cbiAgICAgICAgYH08L3N0eWxlPlxuICAgICAgICA8TXVpVGhlbWVQcm92aWRlcj5cbiAgICAgICAgICA8TWVudUJhciAvPlxuICAgICAgICAgIDxDYXJkIHN0eWxlPXt7IGhlaWdodDogODAwLCBtYXJnaW46IDUgfX0+XG4gICAgICAgICAgICA8Q2FyZFRpdGxlIHRpdGxlPXttb250aHN9IHN1YnRpdGxlPXt0aGlzLnN0YXRlLnllYXJ9IC8+XG4gICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInRpbGUtZGF5XCI+XG4gICAgICAgICAgICAgIHt3ZWVrZGF5cy5tYXAoKG5hbWUsIGlkeCkgPT4gKFxuICAgICAgICAgICAgICAgIDxUaWxlXG4gICAgICAgICAgICAgICAgICB2YWx1ZT17bmFtZSArIFwiLlwifVxuICAgICAgICAgICAgICAgICAga2V5PXtpZHh9XG4gICAgICAgICAgICAgICAgICBzdHlsZT17eyBmb250U2l6ZTogMTMgfX1cbiAgICAgICAgICAgICAgICAgIGluZGV4PXtpZHh9XG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgKSl9XG4gICAgICAgICAgICAgIHtbLi4uQXJyYXkoNDIpLmtleXMoKV0ubWFwKChfLCBpZHgpID0+IChcbiAgICAgICAgICAgICAgICA8VGlsZVxuICAgICAgICAgICAgICAgICAgdmFsdWU9e2RhdGVOdW0oaWR4KX1cbiAgICAgICAgICAgICAgICAgIGtleT17aWR4fVxuICAgICAgICAgICAgICAgICAgb25DbGljaz17dGhpcy5oYW5kbGVPcGVufVxuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICkpfVxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8YnIgLz4+XG4gICAgICAgICAgICA8Q2FyZEFjdGlvbnM+XG4gICAgICAgICAgICAgIDxSYWlzZWRCdXR0b25cbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kQ29sb3I9XCJ2aW9sZXRcIlxuICAgICAgICAgICAgICAgIG9uQ2xpY2s9e3RoaXMucHJldn1cbiAgICAgICAgICAgICAgICBpY29uPXs8TmF2aWdhdGlvbkNoZXZyb25MZWZ0IGNvbG9yPVwid2hpdGVcIiAvPn1cbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgPFJhaXNlZEJ1dHRvbiBsYWJlbD1cIlRvZGF5XCIgb25DbGljaz17dGhpcy50b2RheX0gLz5cbiAgICAgICAgICAgICAgPFJhaXNlZEJ1dHRvblxuICAgICAgICAgICAgICAgIGJhY2tncm91bmRDb2xvcj1cInZpb2xldFwiXG4gICAgICAgICAgICAgICAgb25DbGljaz17dGhpcy5uZXh0fVxuICAgICAgICAgICAgICAgIGljb249ezxOYXZpZ2F0aW9uQ2hldnJvblJpZ2h0IGNvbG9yPVwid2hpdGVcIiAvPn1cbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgIDwvQ2FyZEFjdGlvbnM+XG4gICAgICAgICAgPC9DYXJkPlxuICAgICAgICAgIDxEaWFsb2dFdmVudFxuICAgICAgICAgICAgb3Blbj17dGhpcy5zdGF0ZS5vcGVufVxuICAgICAgICAgICAgb25IYW5kbGVDbG9zZT17dGhpcy5oYW5kbGVDbG9zZUNoYW5nZX1cbiAgICAgICAgICAvPlxuICAgICAgICA8L011aVRoZW1lUHJvdmlkZXI+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG59XG5leHBvcnQgZGVmYXVsdCBJbmRleDtcbiJdfQ== */\n/*@ sourceURL=pages/index.js */"
+          css: "h1.jsx-2296073262{text-align:center;}.tile-day.jsx-2296073262{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-wrap:wrap;-ms-flex-wrap:wrap;flex-wrap:wrap;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;height:100vmin;max-height:400px;box-sizing:border-box;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBhZ2VzL2luZGV4LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXNHb0IsQUFHK0IsQUFHTCxrQkFGZix3REFHaUIseURBQ1EsbUdBQ1IsZUFDRSxpQkFDSyxzQkFDeEIiLCJmaWxlIjoicGFnZXMvaW5kZXguanMiLCJzb3VyY2VSb290IjoiL1VzZXJzL3JpbWFhdWd1c3RpbmUvQ29kZS9jYWxlbmRhci1yZWFjdGpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gXCJyZWFjdFwiO1xuaW1wb3J0IEhlYWQgZnJvbSBcIm5leHQvaGVhZFwiO1xuXG4vL21hdGVyaWFsIHVpXG5pbXBvcnQgTXVpVGhlbWVQcm92aWRlciBmcm9tIFwibWF0ZXJpYWwtdWkvc3R5bGVzL011aVRoZW1lUHJvdmlkZXJcIjtcbmltcG9ydCB7IENhcmQsIENhcmRBY3Rpb25zLCBDYXJkVGl0bGUsIENhcmRUZXh0IH0gZnJvbSBcIm1hdGVyaWFsLXVpL0NhcmRcIjtcbmltcG9ydCBSYWlzZWRCdXR0b24gZnJvbSBcIm1hdGVyaWFsLXVpL1JhaXNlZEJ1dHRvblwiO1xuaW1wb3J0IE5hdmlnYXRpb25DaGV2cm9uTGVmdCBmcm9tIFwibWF0ZXJpYWwtdWkvc3ZnLWljb25zL25hdmlnYXRpb24vY2hldnJvbi1sZWZ0XCI7XG5pbXBvcnQgTmF2aWdhdGlvbkNoZXZyb25SaWdodCBmcm9tIFwibWF0ZXJpYWwtdWkvc3ZnLWljb25zL25hdmlnYXRpb24vY2hldnJvbi1yaWdodFwiO1xuXG4vL2NvbXBvbmVudHNcbmltcG9ydCBNZW51QmFyIGZyb20gXCIuLi9jb21wb25lbnRzL21lbnVCYXJcIjtcbmltcG9ydCB7IFRpbGUgfSBmcm9tIFwiLi4vY29tcG9uZW50cy90aWxlXCI7XG5pbXBvcnQgaW5oZXJpdHMgZnJvbSBcImJhYmVsLXJ1bnRpbWUvaGVscGVycy9pbmhlcml0c1wiO1xuaW1wb3J0IG1vbWVudCBmcm9tIFwibW9tZW50XCI7XG5pbXBvcnQgRGlhbG9nRXZlbnQgZnJvbSBcIi4uL2NvbXBvbmVudHMvZGlhbG9nXCI7XG5cbmNsYXNzIEluZGV4IGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgc3VwZXIoKTtcbiAgICBjb25zdCB0b2RheSA9IG5ldyBEYXRlKCk7XG4gICAgdGhpcy5zdGF0ZSA9IHtcbiAgICAgIHllYXI6IHRvZGF5LmdldEZ1bGxZZWFyKCksXG4gICAgICBtb250aDogdG9kYXkuZ2V0TW9udGgoKSxcbiAgICAgIGRhdGU6ICcnLFxuICAgICAgZXZlbnRzOiBbe1wiaWRcIjoxLCBcImRhdGVcIjpcIjMwLzQvMjAxOFwiLCBcIm5hbWVcIjpcIkRpbm5lclwifV0sXG4gICAgICBvcGVuOiBmYWxzZVxuICAgIH07XG4gIH1cblxuICBoYW5kbGVPcGVuID0gKHRvZGF5KSA9PiB7XG4gICAgY29uc3QgbW9udGggPSB0aGlzLnN0YXRlLm1vbnRoICsgMVxuICAgIHRoaXMuc2V0U3RhdGUoeyBvcGVuOiB0cnVlLCBkYXRlOiB0b2RheSArIFwiL1wiICsgbW9udGggICsgXCIvXCIgKyB0aGlzLnN0YXRlLnllYXIgIH0pO1xuICAgIFxuICB9O1xuXG4gIGhhbmRsZUNsb3NlQ2hhbmdlID0gKCkgPT4ge1xuICAgIHRoaXMuc2V0U3RhdGUoeyBvcGVuOiBmYWxzZSB9KTtcbiAgICBjb25zb2xlLmxvZyhcInBhcmVudFwiKVxuICB9O1xuXG4gIHByZXYgPSAoKSA9PiB7XG4gICAgdGhpcy5zZXRTdGF0ZSh7XG4gICAgICB5ZWFyOiB0aGlzLnN0YXRlLm1vbnRoID8gdGhpcy5zdGF0ZS55ZWFyIDogdGhpcy5zdGF0ZS55ZWFyIC0gMSxcbiAgICAgIG1vbnRoOiAodGhpcy5zdGF0ZS5tb250aCArIDExKSAlIDEyXG4gICAgfSk7XG4gIH07XG5cbiAgbmV4dCA9ICgpID0+IHtcbiAgICB0aGlzLnNldFN0YXRlKHtcbiAgICAgIHllYXI6IHRoaXMuc3RhdGUubW9udGggPyB0aGlzLnN0YXRlLnllYXIgOiB0aGlzLnN0YXRlLnllYXIgKyAxLFxuICAgICAgbW9udGg6ICh0aGlzLnN0YXRlLm1vbnRoICsgMTMpICUgMTJcbiAgICB9KTtcbiAgfTtcblxuICB0b2RheSA9ICgpID0+IHtcbiAgICBjb25zdCB0b2RheSA9IG5ldyBEYXRlKCk7XG4gICAgdGhpcy5zZXRTdGF0ZSh7XG4gICAgICB5ZWFyOiB0b2RheS5nZXRGdWxsWWVhcigpLFxuICAgICAgbW9udGg6IHRvZGF5LmdldE1vbnRoKClcbiAgICB9KTtcbiAgfTtcblxuICBjcmVhdGVDbGlja0hhbmRsZSA9IGlkeCA9PiB7XG4gICAgY29uc29sZS5sb2coXCJzdWNjZXNzXCIpO1xuICB9O1xuICBcblxuICBhZGROZXdFdmVudCA9IChldmVudCkgPT4ge1xuICAgIHRoaXMuc2V0U3RhdGUoe1xuICAgICAgZXZlbnRzOiBbLi4udGhpcy5zdGF0ZS5ldmVudHMsIGV2ZW50XVxuICAgIH0pXG4gIH1cblxuICByZW5kZXIoKSB7XG4gICAgY29uc3QgeyB5ZWFyLCBtb250aCB9ID0gdGhpcy5zdGF0ZTtcbiAgICBjb25zdCBkYXRlID0gbW9tZW50KFt5ZWFyLCBtb250aF0pO1xuICAgIGNvbnNvbGUubG9nKFwieWVhclwiLCB5ZWFyLCBcIm1vbnRoXCIsIG1vbnRoLCBcImRhdGVcIiwgZGF0ZSk7XG4gICAgY29uc3Qgd2Vla2RheXMgPSBtb21lbnQud2Vla2RheXNTaG9ydCgpO1xuICAgIGNvbnN0IG1vbnRocyA9IG1vbWVudC5tb250aHMobW9udGgpO1xuICAgIGNvbnNvbGUubG9nKFwid2Vla2RheXNcIiwgd2Vla2RheXMpO1xuICAgIGNvbnN0IGxhc3REYXRlID0gbmV3IERhdGUoeWVhciwgbW9udGggKyAxLCAwKS5nZXREYXRlKCk7IC8vMzBcbiAgICBjb25zb2xlLmxvZyhsYXN0RGF0ZSk7XG4gICAgY29uc3Qgb2Zmc2V0ID0gZGF0ZS53ZWVrZGF5KCk7IC8vIG51bSBvZiB3ZWVrZGF5XG4gICAgY29uc29sZS5sb2cob2Zmc2V0KTtcbiAgICAvL2luZGV4ID0gMCAuLiA0MVxuICAgIGNvbnN0IGRhdGVOdW0gPSBpbmRleCA9PiB7XG4gICAgICBpZiAob2Zmc2V0IDw9IGluZGV4ICYmIGluZGV4IDwgb2Zmc2V0ICsgbGFzdERhdGUpIHtcbiAgICAgICAgcmV0dXJuIGluZGV4IC0gb2Zmc2V0ICsgMTtcbiAgICAgIH1cbiAgICB9O1xuXG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXY+XG4gICAgICAgIDxIZWFkPlxuICAgICAgICAgIDx0aXRsZT5SZURJIENhbGVuZGVyPC90aXRsZT5cbiAgICAgICAgICA8bWV0YVxuICAgICAgICAgICAgbmFtZT1cInZpZXdwb3J0XCJcbiAgICAgICAgICAgIGNvbnRlbnQ9XCJpbml0aWFsLXNjYWxlPTEuMCwgd2lkdGg9ZGV2aWNlLXdpZHRoXCJcbiAgICAgICAgICAgIGtleT1cInZpZXdwb3J0XCJcbiAgICAgICAgICAvPlxuICAgICAgICA8L0hlYWQ+XG4gICAgICAgIDxzdHlsZSBqc3g+e2BcbiAgICAgICAgICBoMSB7XG4gICAgICAgICAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgICAgICAgfVxuICAgICAgICAgIC50aWxlLWRheSB7XG4gICAgICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICAgICAgZmxleC13cmFwOiB3cmFwO1xuICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgICAgICAgICBoZWlnaHQ6IDEwMHZtaW47XG4gICAgICAgICAgICBtYXgtaGVpZ2h0OiA0MDBweDtcbiAgICAgICAgICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgICAgICAgfVxuICAgICAgICBgfTwvc3R5bGU+XG4gICAgICAgIDxNdWlUaGVtZVByb3ZpZGVyPlxuICAgICAgICAgIDxNZW51QmFyIC8+XG4gICAgICAgICAgPENhcmQgc3R5bGU9e3sgaGVpZ2h0OiA4MDAsIG1hcmdpbjogNSB9fT5cbiAgICAgICAgICAgIDxDYXJkVGl0bGUgdGl0bGU9e21vbnRoc30gc3VidGl0bGU9e3RoaXMuc3RhdGUueWVhcn0gLz5cbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwidGlsZS1kYXlcIj5cbiAgICAgICAgICAgICAge3dlZWtkYXlzLm1hcCgobmFtZSwgaWR4KSA9PiAoXG4gICAgICAgICAgICAgICAgPFRpbGVcbiAgICAgICAgICAgICAgICAgIHZhbHVlPXtuYW1lICsgXCIuXCJ9XG4gICAgICAgICAgICAgICAgICBrZXk9e2lkeH1cbiAgICAgICAgICAgICAgICAgIHN0eWxlPXt7IGZvbnRTaXplOiAxMyB9fVxuICAgICAgICAgICAgICAgICAgaW5kZXg9e2lkeH1cbiAgICAgICAgICAgICAgICAvPlxuICAgICAgICAgICAgICApKX1cbiAgICAgICAgICAgICAge1suLi5BcnJheSg0Mikua2V5cygpXS5tYXAoKF8sIGlkeCkgPT4gKFxuICAgICAgICAgICAgICAgIDxUaWxlXG4gICAgICAgICAgICAgICAgICB2YWx1ZT17ZGF0ZU51bShpZHgpfVxuICAgICAgICAgICAgICAgICAga2V5PXtpZHh9XG4gICAgICAgICAgICAgICAgICBvbkNsaWNrPXsoKSA9PiB0aGlzLmhhbmRsZU9wZW4oZGF0ZU51bShpZHgpLCBpZHgpfVxuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICkpfVxuICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8YnIgLz4+XG4gICAgICAgICAgICA8Q2FyZEFjdGlvbnM+XG4gICAgICAgICAgICAgIDxSYWlzZWRCdXR0b25cbiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kQ29sb3I9XCJ2aW9sZXRcIlxuICAgICAgICAgICAgICAgIG9uQ2xpY2s9e3RoaXMucHJldn1cbiAgICAgICAgICAgICAgICBpY29uPXs8TmF2aWdhdGlvbkNoZXZyb25MZWZ0IGNvbG9yPVwid2hpdGVcIiAvPn1cbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgPFJhaXNlZEJ1dHRvbiBsYWJlbD1cIlRvZGF5XCIgb25DbGljaz17dGhpcy50b2RheX0gLz5cbiAgICAgICAgICAgICAgPFJhaXNlZEJ1dHRvblxuICAgICAgICAgICAgICAgIGJhY2tncm91bmRDb2xvcj1cInZpb2xldFwiXG4gICAgICAgICAgICAgICAgb25DbGljaz17dGhpcy5uZXh0fVxuICAgICAgICAgICAgICAgIGljb249ezxOYXZpZ2F0aW9uQ2hldnJvblJpZ2h0IGNvbG9yPVwid2hpdGVcIiAvPn1cbiAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgIDwvQ2FyZEFjdGlvbnM+XG4gICAgICAgICAgPC9DYXJkPlxuICAgICAgICAgIDxEaWFsb2dFdmVudFxuICAgICAgICAgICAgZXZlbnRzPXt0aGlzLnN0YXRlLmV2ZW50c31cbiAgICAgICAgICAgIG9wZW49e3RoaXMuc3RhdGUub3Blbn1cbiAgICAgICAgICAgIG9uSGFuZGxlQ2xvc2U9e3RoaXMuaGFuZGxlQ2xvc2VDaGFuZ2V9XG4gICAgICAgICAgICBkYXRlPXt0aGlzLnN0YXRlLmRhdGV9XG4gICAgICAgICAgICBhZGROZXdFdmVudD17dGhpcy5hZGROZXdFdmVudH1cbiAgICAgICAgICAvPlxuICAgICAgICA8L011aVRoZW1lUHJvdmlkZXI+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG59XG5leHBvcnQgZGVmYXVsdCBJbmRleDtcbiJdfQ== */\n/*@ sourceURL=pages/index.js */"
         }),
         __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
           __WEBPACK_IMPORTED_MODULE_3_material_ui_styles_MuiThemeProvider___default.a,
           {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 105
+              lineNumber: 116
             }
           },
           __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8__components_menuBar__["a" /* default */], {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 106
+              lineNumber: 117
             }
           }),
           __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
             __WEBPACK_IMPORTED_MODULE_4_material_ui_Card__["Card"],
             { style: { height: 800, margin: 5 }, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 107
+                lineNumber: 118
               }
             },
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4_material_ui_Card__["CardTitle"], { title: months, subtitle: this.state.year, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 108
+                lineNumber: 119
               }
             }),
             __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
@@ -735,7 +905,7 @@ var Index = function (_React$Component) {
                 className: "jsx-2296073262" + " " + "tile-day",
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 109
+                  lineNumber: 120
                 }
               },
               weekdays.map(function (name, idx) {
@@ -746,7 +916,7 @@ var Index = function (_React$Component) {
                   index: idx,
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 111
+                    lineNumber: 122
                   }
                 });
               }),
@@ -754,10 +924,12 @@ var Index = function (_React$Component) {
                 return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9__components_tile__["a" /* Tile */], {
                   value: dateNum(idx),
                   key: idx,
-                  onClick: _this2.handleOpen,
+                  onClick: function onClick() {
+                    return _this2.handleOpen(dateNum(idx), idx);
+                  },
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 119
+                    lineNumber: 130
                   }
                 });
               })
@@ -766,7 +938,7 @@ var Index = function (_React$Component) {
               className: "jsx-2296073262",
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 126
+                lineNumber: 137
               }
             }),
             ">",
@@ -775,7 +947,7 @@ var Index = function (_React$Component) {
               {
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 127
+                  lineNumber: 138
                 }
               },
               __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_RaisedButton___default.a, {
@@ -783,17 +955,17 @@ var Index = function (_React$Component) {
                 onClick: this.prev,
                 icon: __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_material_ui_svg_icons_navigation_chevron_left___default.a, { color: "white", __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 131
+                    lineNumber: 142
                   }
                 }),
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 128
+                  lineNumber: 139
                 }
               }),
               __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_RaisedButton___default.a, { label: "Today", onClick: this.today, __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 133
+                  lineNumber: 144
                 }
               }),
               __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_material_ui_RaisedButton___default.a, {
@@ -801,22 +973,25 @@ var Index = function (_React$Component) {
                 onClick: this.next,
                 icon: __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_material_ui_svg_icons_navigation_chevron_right___default.a, { color: "white", __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 137
+                    lineNumber: 148
                   }
                 }),
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 134
+                  lineNumber: 145
                 }
               })
             )
           ),
           __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__components_dialog__["a" /* default */], {
+            events: this.state.events,
             open: this.state.open,
             onHandleClose: this.handleCloseChange,
+            date: this.state.date,
+            addNewEvent: this.addNewEvent,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 141
+              lineNumber: 152
             }
           })
         )
@@ -830,8 +1005,9 @@ var Index = function (_React$Component) {
 var _initialiseProps = function _initialiseProps() {
   var _this3 = this;
 
-  this.handleOpen = function () {
-    _this3.setState({ open: true });
+  this.handleOpen = function (today) {
+    var month = _this3.state.month + 1;
+    _this3.setState({ open: true, date: today + "/" + month + "/" + _this3.state.year });
   };
 
   this.handleCloseChange = function () {
@@ -863,6 +1039,12 @@ var _initialiseProps = function _initialiseProps() {
 
   this.createClickHandle = function (idx) {
     console.log("success");
+  };
+
+  this.addNewEvent = function (event) {
+    _this3.setState({
+      events: [].concat(_toConsumableArray(_this3.state.events), [event])
+    });
   };
 };
 
@@ -906,6 +1088,13 @@ module.exports = require("material-ui/Dialog");
 
 /***/ }),
 
+/***/ "material-ui/Divider":
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/Divider");
+
+/***/ }),
+
 /***/ "material-ui/Drawer":
 /***/ (function(module, exports) {
 
@@ -917,6 +1106,13 @@ module.exports = require("material-ui/Drawer");
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/FlatButton");
+
+/***/ }),
+
+/***/ "material-ui/FloatingActionButton":
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/FloatingActionButton");
 
 /***/ }),
 
@@ -959,6 +1155,20 @@ module.exports = require("material-ui/TimePicker");
 /***/ (function(module, exports) {
 
 module.exports = require("material-ui/styles/MuiThemeProvider");
+
+/***/ }),
+
+/***/ "material-ui/styles/colors":
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/styles/colors");
+
+/***/ }),
+
+/***/ "material-ui/svg-icons/content/add":
+/***/ (function(module, exports) {
+
+module.exports = require("material-ui/svg-icons/content/add");
 
 /***/ }),
 
