@@ -1,2 +1,7 @@
 # calender-reactjs
-A cool calender app for demo day of REDI School
+A cool calendar with ReactJS
+
+## Features 
+Adding event 
+Weather API 
+
