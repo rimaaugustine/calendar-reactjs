@@ -1,4 +1,4 @@
-# calender-reactjs
+# calendar-reactjs
 A cool calendar with ReactJS
 
 ## Features 
