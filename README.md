@@ -2,6 +2,5 @@
 A cool calendar with ReactJS
 
 ## Features 
-Adding event 
-Weather API 
+Adding event and Weather API 
 
