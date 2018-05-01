@@ -5,6 +5,7 @@ import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentAdd from "material-ui/svg-icons/content/add";
 import Devider from "material-ui/Divider"
 import Form from "./form";
+import List from "./list";
 
 
 class DialogEvent extends React.Component {
@@ -61,15 +62,9 @@ class DialogEvent extends React.Component {
           </Form>
         ))}
         <Devider/>
-        <h4>List Events</h4>
-        <ul>
-          {this.props.events
-            .filter(item => {
-              console.log(item.date, this.props.date);
-              return item.date === this.props.date; //more than one line
-            })
-            .map((item, index) => <li key={index}>{item.name} </li>)}
-        </ul>
+     
+        <List events={this.props.events} date={this.props.date}/>
+     
       </Dialog>
     );
   }
