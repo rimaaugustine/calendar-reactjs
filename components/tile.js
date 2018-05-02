@@ -1,5 +1,5 @@
 
-export const Tile = ({ value, index, onClick}) => {
+export const Tile = ({ value, index, onClick, eventNames}) => {
    const height = `  ${index < 8 ? '10%' : '15.333333%'}`
    const backgroundColor = `  ${index < 8 ? '#e8afe8': 'white'}`
     return (
@@ -19,8 +19,8 @@ export const Tile = ({ value, index, onClick}) => {
             
           }
         `}</style>
-        
         {value}
+
       </div>
     )
   }

@@ -1,5 +1,6 @@
 import React from "react";
-
+import Delete from "material-ui/svg-icons/action/delete";
+import ModeEdit from "material-ui/svg-icons/editor/mode-edit";
 
 const List = ({events, date}) => {
   return (
@@ -10,7 +11,7 @@ const List = ({events, date}) => {
                 console.log("DATE EVENTS", item.date, "DATE", date);
                 return item.date === date; //more than one line
               })
-          .map((item, index) => <li key={index}>{item.name}  </li>)}
+          .map((item, index) => <li key={index}>{item.name} <ModeEdit /><Delete style={{color:"grey"}}/> </li>)}
       </ul>
   
     </div>
@@ -18,3 +19,4 @@ const List = ({events, date}) => {
 };
 
 export default List;
+    

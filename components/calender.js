@@ -128,6 +128,7 @@ class Calendar extends React.Component {
               ))}
               {[...Array(42).keys()].map((_, idx) => (
                 <Tile
+                  eventNames={this.state.events}
                   value={dateNum(idx)}
                   key={idx}
                   onClick={() => this.handleOpen(dateNum(idx), idx)}
