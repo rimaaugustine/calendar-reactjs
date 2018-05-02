@@ -3,10 +3,9 @@ import Dialog from "material-ui/Dialog";
 import FlatButton from "material-ui/FlatButton";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentAdd from "material-ui/svg-icons/content/add";
-import Devider from "material-ui/Divider"
+import Devider from "material-ui/Divider";
 import Form from "./form";
 import List from "./list";
-
 
 class DialogEvent extends React.Component {
   constructor(props) {
@@ -36,7 +35,7 @@ class DialogEvent extends React.Component {
     const actions = [
       <FlatButton label="Cancel" secondary={true} onClick={this.handleClose} />
     ];
-    console.log(this.props.date);
+    console.log("DATE ", this.props.date);
     return (
       <Dialog
         title={this.props.date}
@@ -44,27 +43,25 @@ class DialogEvent extends React.Component {
         modal={true}
         open={this.props.open}
         autoScrollBodyContent={true}
-        titleStyle={{margin:0, paddingBottom:0}}
+        titleStyle={{ margin: 0, paddingBottom: 0 }}
       >
-      <div style={{display:"flex", justifyContent:"flex-end"}}>
-        <FloatingActionButton
-          mini={true}
-          secondary={true}
-          onClick={this.addForm.bind()}
-          style={{ margin: 2 }}
-        >
-          <ContentAdd />
-        </FloatingActionButton>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <FloatingActionButton
+            mini={true}
+            secondary={true}
+            onClick={this.addForm.bind()}
+            style={{ margin: 2 }}
+          >
+            <ContentAdd />
+          </FloatingActionButton>
         </div>
         {this.state.data.map((item, i) => (
-          <Form key={i} index={i} addNewEvent={this.props.addNewEvent}>
+          <Form key={i} index={i} addNewEvent={this.props.addNewEvent} date={this.props.date}>
             {item}
           </Form>
         ))}
-        <Devider/>
-     
-        <List events={this.props.events} date={this.props.date}/>
-     
+        <Devider />
+        <List events={this.props.events} date={this.props.date} />
       </Dialog>
     );
   }
