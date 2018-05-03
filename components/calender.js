@@ -71,6 +71,8 @@ class Calendar extends React.Component {
     this.setState({
       events: [...this.state.events, event]
     });
+    
+    
   };
 
   deleteEvent = id => {
@@ -111,7 +113,8 @@ class Calendar extends React.Component {
       }
     };
     const monthPlusOne = month + 1;
-
+    const day = new Date();
+    const dayToday = day.getDay() - 1
     return (
       <div>
         <Head>
@@ -141,7 +144,7 @@ class Calendar extends React.Component {
         <MuiThemeProvider>
           <MenuBar temp={this.props.temp}/>
           <Card style={{ height: 800, margin: 5 }}>
-            <CardTitle title={months} subtitle={this.state.year} />
+            <CardTitle title={ dayToday + " "+ months} subtitle={this.state.year} />
             <div className="tile-day" >
               {weekdays.map((name, idx) => (
                 <Tile

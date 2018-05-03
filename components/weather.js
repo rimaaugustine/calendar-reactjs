@@ -27,11 +27,11 @@ export default class Weather extends React.Component {
         <div style={{margin:20}}>
         <div style={{textAlign:"center"}}>
         <h1>{this.props.temp.name}</h1> 
-        <img src={`http://openweathermap.org/img/w/${weatherArr}.png`} width="80px" />
+        <img src={`https://openweathermap.org/img/w/${weatherArr}.png`} width="80px" />
         <p><i>{weatherDes}</i></p>
         </div>
       
-          <p>Temperatur:{this.props.temp.main.temp} C</p> 
+          <p>Temperature:{this.props.temp.main.temp} C</p> 
           <p>Pressure: {(this.props.temp.main.pressure)}hPa</p> 
           <p>Humidity: {this.props.temp.main.humidity}%</p> 
           <p>Wind: {this.props.temp.wind.speed}km/hr</p> 

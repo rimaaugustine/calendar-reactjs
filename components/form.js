@@ -31,17 +31,29 @@ export default class Form extends Component {
   }
   handleChange = (event, index, category) => this.setState({category});
 
+  handleChangeStartTime = (event, date) => {
+    const dateString = date.toString()
+    const splitDate = dateString.split(" ");
+    const time = splitDate[4]
+    console.log(time)
+    this.setState({startTime: time});
+   
+  };
+
+  handleChangeEndTime = (event, time) => {
+    console.log(event)
+    this.setState({endTime: time});
+  };
+
   onTextChange = e => {
     let value = e.target.value;
     let name = e.target.name;
     console.log(name);
     this.setState({
       [name]: value
-      // instead of fname: value,
-      //let newState[name] = value
-      //this.setState(newState)
+     
     });
-    //console.log([name])
+ 
   };
   handleExpandChange = expanded => {
     this.setState({ expanded: expanded });
@@ -91,15 +103,18 @@ export default class Form extends Component {
             <div style={{ display: "Flex", flexWrap: "wrap" }}>
               <div style={{ marginRight: 8 }}>
                 <TimePicker floatingLabelText="Start Time" 
-                 name="start-time"
-                 
-                
+                format="24hr"
+               
+                 value={this.state.startTime}
+                 onChange={this.handleChangeStartTime} 
                 />
               </div>  
               <div>
                 <TimePicker floatingLabelText="End Time" 
+                format="24hr"
                   name="end-time"
-                
+                  value={this.state.endTime}
+                  onChange={this.handleChangeEndTime}
                   />
               </div>
             </div>
@@ -125,9 +140,9 @@ export default class Form extends Component {
                 onClick={e => {
                   this.props.addNewEvent({
                     ...this.state,
-                    date: this.props.date
+                    date: this.props.date,
                   });
-
+                  this.props.onClickRemove(this.props.index)
                 }}
               />
             </div>

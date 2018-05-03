@@ -23,7 +23,7 @@ class DialogEvent extends React.Component {
     this.setState({ board: arr });
     // let arrString = JSON.stringify(arr);
     // localStorage.setItem("data", arrString);
-    // console.log("click");
+    console.log(this.state.board);
   };
 
   removeForm = object => {
