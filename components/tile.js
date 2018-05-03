@@ -1,9 +1,26 @@
 
-export const Tile = ({ value, index, onClick, eventNames}) => {
+export const Tile = ({ value, index, onClick, eventNames, monthPlusOne, year}) => {
    const height = `  ${index < 8 ? '10%' : '15.333333%'}`
-   const backgroundColor = `  ${index < 8 ? '#e8afe8': 'white'}`
+   
+   const backgroundColor = () => {
+     if( eventNames) {
+      return eventNames.filter(event => {
+        return (
+          event.date ===
+          value +
+            "/" +
+            monthPlusOne +
+            "/" +
+            year
+        );
+      }).map((x)=> {console.log(x); return x}  ).length ? 'pink' : 'white' 
+     }
+     return `${index < 8 ? '#e8afe8': 'white'}`
+   }  
+   
+   console.log(backgroundColor())
     return (
-      <div className='tile' onClick={onClick} style={{height, backgroundColor}} >
+      <div className='tile' onClick={onClick} style={{height, backgroundColor: backgroundColor() }} >
         <style jsx>{`
           .tile {
             width: 14%;
@@ -16,12 +33,13 @@ export const Tile = ({ value, index, onClick, eventNames}) => {
             align-items: center;
             justify-content: center;
             border-width: 2px;
-            
+            background-color: "pink"
           }
+        
         `}</style>
         {value}
         {/* {(eventNames || []).map(event => <h5>{event.date}</h5>) } */}
-     
+          
       </div>
     )
   }

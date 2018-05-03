@@ -22,21 +22,23 @@ class Calendar extends React.Component {
     this.state = {
       year: today.getFullYear(),
       month: today.getMonth(),
-      date: '',
-      events: [{"id":1, "date":"30/4/2018", "name":"Dinner"}],
+      date: "",
+      events: [{ id: 1, date: "30/4/2018", name: "Dinner" }],
       open: false
     };
   }
 
-  handleOpen = (today) => {
-    const month = this.state.month + 1
-    this.setState({ open: true, date: today + "/" + month  + "/" + this.state.year  });
-    
+  handleOpen = today => {
+    const month = this.state.month + 1;
+    this.setState({
+      open: true,
+      date: today + "/" + month + "/" + this.state.year
+    });
   };
 
   handleCloseChange = () => {
     this.setState({ open: false });
-    console.log("parent")
+    console.log("parent");
   };
 
   prev = () => {
@@ -64,29 +66,32 @@ class Calendar extends React.Component {
   createClickHandle = idx => {
     console.log("success");
   };
-  
 
-  addNewEvent = (event) => {
+  addNewEvent = event => {
     this.setState({
       events: [...this.state.events, event]
-    })
-  }
+    });
+  };
 
-  deleteEvent = (event) => {
-      alert("this is cool",event)
-    //   const newEvents = events.filter((event)=>{
-    //       event.id !== id
-    //   })
-    //   this.setState({
-    //       events: newEvents
-    //   })
-    // let newEvents = this.state.events
-    // console.log("hahaha",newEvents)
-    // newEvents.splice(id, 1)
-    //     this.setState({
-    //         events: newEvents
-    //     })
-  }
+  deleteEvent = id => {
+    console.log(id);
+    const newEvents = this.state.events.filter(event => {
+      event.id !== id;
+    });
+    this.setState({
+      events: newEvents
+    });
+  };
+
+  editEvent = newEvent => {
+    const newEvents = this.state.events.filter(event => {
+      event.id !== newEvent.id;
+    });
+    newEvents.push(newEvent);
+    this.setState({
+      events: newEvents
+    });
+  };
 
   render() {
     const { year, month } = this.state;
@@ -105,6 +110,7 @@ class Calendar extends React.Component {
         return index - offset + 1;
       }
     };
+    const monthPlusOne = month + 1;
 
     return (
       <div>
@@ -128,25 +134,32 @@ class Calendar extends React.Component {
             max-height: 400px;
             box-sizing: border-box;
           }
+          .hasEvent {
+            background-color: "pink";
+          }
         `}</style>
         <MuiThemeProvider>
           <MenuBar />
           <Card style={{ height: 800, margin: 5 }}>
             <CardTitle title={months} subtitle={this.state.year} />
-            <div className="tile-day">
+            <div className="tile-day" >
               {weekdays.map((name, idx) => (
                 <Tile
                   value={name + "."}
                   key={idx}
                   style={{ fontSize: 13 }}
                   index={idx}
+                  monthPlusOne={monthPlusOne}
+                  year={this.state.year}
                 />
               ))}
               {[...Array(42).keys()].map((_, idx) => (
-                <Tile
+                <Tile 
                   eventNames={this.state.events}
                   value={dateNum(idx)}
                   key={idx}
+                  monthPlusOne={monthPlusOne}
+                  year={this.state.year}
                   onClick={() => this.handleOpen(dateNum(idx), idx)}
                 />
               ))}
@@ -173,6 +186,7 @@ class Calendar extends React.Component {
             date={this.state.date}
             addNewEvent={this.addNewEvent}
             deleteEvent={this.deleteEvent}
+            editEvent={this.editEvent}
           />
         </MuiThemeProvider>
       </div>

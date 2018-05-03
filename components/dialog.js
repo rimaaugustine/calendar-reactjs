@@ -67,7 +67,7 @@ class DialogEvent extends React.Component {
           </Form>
         ))}
         <Devider />
-        <List events={this.props.events} date={this.props.date} deleteEvent={this.props.deleteEvent}/>
+        <List events={this.props.events} date={this.props.date} deleteEvent={this.props.deleteEvent} editEvent={this.props.editEvent}/>
       </Dialog>
     );
   }
