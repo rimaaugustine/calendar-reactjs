@@ -12,8 +12,8 @@ const List = ({events, date, deleteEvent, editEvent}) => {
                 return item.date === date; //more than one line
               })
           .map((item, index) => <li key={index}>{item.name}
-          <ModeEdit onClick={(e) => { editEvent(item)}} />
-          <Delete style={{color:"grey"}} onClick={(e) => { deleteEvent(item.id)}} /> </li>
+          {/* <ModeEdit onClick={(e) => { editEvent(item)}} /> */}
+          <Delete style={{color:"red", marginLeft:20, paddingBottom:0}} onClick={(e) => { deleteEvent(item.id)}} /> </li>
         )}
       </ul>
   
