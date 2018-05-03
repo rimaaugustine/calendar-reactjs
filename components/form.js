@@ -24,11 +24,12 @@ export default class Form extends Component {
       location: "",
       startTime: "",
       endTime: "",
-      category: "",
+      category: 1,
       date: "",
       expanded: false
     };
   }
+  handleChange = (event, index, category) => this.setState({category});
 
   onTextChange = e => {
     let value = e.target.value;
@@ -91,20 +92,19 @@ export default class Form extends Component {
               <div style={{ marginRight: 8 }}>
                 <TimePicker floatingLabelText="Start Time" 
                  name="start-time"
-                 onChange={this.onTextChange}
+                 
                 
                 />
               </div>  
               <div>
                 <TimePicker floatingLabelText="End Time" 
                   name="end-time"
-                  onChange={this.onTextChange}
                 
                   />
               </div>
             </div>
 
-            <SelectField floatingLabelText="Category" autoWidth={true}>
+            <SelectField floatingLabelText="Category" autoWidth={true} value={this.state.category} onChange={this.handleChange}>
               <MenuItem value={1} primaryText="Work" />
               <MenuItem value={2} primaryText="School" />
               <MenuItem value={3} primaryText="Fun" />

@@ -37,7 +37,7 @@ class MenuBar extends React.Component {
           }
           style={{ backgroundColor: "purple" }}
         />
-        <Weather open={this.state.drawerOpen} switchDrawer={this.switchDrawer}/>
+        <Weather open={this.state.drawerOpen} switchDrawer={this.switchDrawer} temp={this.props.temp}/>
       </div>
     );
   }

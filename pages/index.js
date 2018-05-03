@@ -2,10 +2,11 @@ import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import Calendar from "../components/calender";
 import fetch from 'isomorphic-unfetch'
 
-const Index = () => {
+const Index = (temp) => {
   return (
     <MuiThemeProvider>
-      <Calendar />
+      <Calendar temp={temp.weather} />
+
     </MuiThemeProvider>
   );
 };
@@ -18,7 +19,7 @@ Index.getInitialProps = async function() {
   console.log(`Show data fetched. Count: ${data.length}`)
 
   return {
-    shows: data
+    weather: data
   }}
 
 export default Index;

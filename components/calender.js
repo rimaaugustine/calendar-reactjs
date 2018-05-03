@@ -139,7 +139,7 @@ class Calendar extends React.Component {
           }
         `}</style>
         <MuiThemeProvider>
-          <MenuBar />
+          <MenuBar temp={this.props.temp}/>
           <Card style={{ height: 800, margin: 5 }}>
             <CardTitle title={months} subtitle={this.state.year} />
             <div className="tile-day" >

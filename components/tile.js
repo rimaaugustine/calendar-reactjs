@@ -13,12 +13,12 @@ export const Tile = ({ value, index, onClick, eventNames, monthPlusOne, year}) =
             "/" +
             year
         );
-      }).map((x)=> {console.log(x); return x}  ).length ? 'pink' : 'white' 
+      }).map((x)=> {console.log(x); return x}  ).length ? '#80deea' : 'white' 
      }
      return `${index < 8 ? '#e8afe8': 'white'}`
    }  
    
-   console.log(backgroundColor())
+  
     return (
       <div className='tile' onClick={onClick} style={{height, backgroundColor: backgroundColor() }} >
         <style jsx>{`
@@ -33,13 +33,10 @@ export const Tile = ({ value, index, onClick, eventNames, monthPlusOne, year}) =
             align-items: center;
             justify-content: center;
             border-width: 2px;
-            background-color: "pink"
           }
-        
         `}</style>
         {value}
-        {/* {(eventNames || []).map(event => <h5>{event.date}</h5>) } */}
-          
+  
       </div>
     )
   }
