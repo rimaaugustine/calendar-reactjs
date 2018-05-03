@@ -72,6 +72,22 @@ class Calendar extends React.Component {
     })
   }
 
+  deleteEvent = (event) => {
+      alert("this is cool",event)
+    //   const newEvents = events.filter((event)=>{
+    //       event.id !== id
+    //   })
+    //   this.setState({
+    //       events: newEvents
+    //   })
+    // let newEvents = this.state.events
+    // console.log("hahaha",newEvents)
+    // newEvents.splice(id, 1)
+    //     this.setState({
+    //         events: newEvents
+    //     })
+  }
+
   render() {
     const { year, month } = this.state;
     const date = moment([year, month]);
@@ -156,6 +172,7 @@ class Calendar extends React.Component {
             onHandleClose={this.handleCloseChange}
             date={this.state.date}
             addNewEvent={this.addNewEvent}
+            deleteEvent={this.deleteEvent}
           />
         </MuiThemeProvider>
       </div>

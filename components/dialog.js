@@ -11,20 +11,26 @@ class DialogEvent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      board: []
     };
-    //this.addForm = this.addForm.bind(this)
+    this.removeForm = this.removeForm.bind(this)
     this.handleClose = this.handleClose.bind(this);
   }
 
   addForm = object => {
-    let arr = this.state.data;
+    let arr = this.state.board;
     arr.push(object);
-    this.setState({ data: arr });
+    this.setState({ board: arr });
     // let arrString = JSON.stringify(arr);
     // localStorage.setItem("data", arrString);
     // console.log("click");
   };
+
+  removeForm = object => {
+    let arr = this.state.board;
+    arr.splice(object, 1)
+    this.setState({board: arr })
+  }
 
   handleClose(e) {
     this.props.onHandleClose(e);
@@ -55,13 +61,13 @@ class DialogEvent extends React.Component {
             <ContentAdd />
           </FloatingActionButton>
         </div>
-        {this.state.data.map((item, i) => (
-          <Form key={i} index={i} addNewEvent={this.props.addNewEvent} date={this.props.date}>
+        {this.state.board.map((item, i) => (
+          <Form key={i} index={i} addNewEvent={this.props.addNewEvent} date={this.props.date} onClickRemove={this.removeForm}>
             {item}
           </Form>
         ))}
         <Devider />
-        <List events={this.props.events} date={this.props.date} />
+        <List events={this.props.events} date={this.props.date} deleteEvent={this.props.deleteEvent}/>
       </Dialog>
     );
   }

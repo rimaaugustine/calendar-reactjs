@@ -31,13 +31,11 @@ export default class Form extends Component {
   }
 
   onTextChange = e => {
-    
     let value = e.target.value;
     let name = e.target.name;
     console.log(name);
     this.setState({
       [name]: value
-
       // instead of fname: value,
       //let newState[name] = value
       //this.setState(newState)
@@ -94,14 +92,14 @@ export default class Form extends Component {
                 <TimePicker floatingLabelText="Start Time" 
                  name="start-time"
                  onChange={this.onTextChange}
-                 value={this.state.startTime}
+                
                 />
               </div>  
               <div>
                 <TimePicker floatingLabelText="End Time" 
                   name="end-time"
                   onChange={this.onTextChange}
-                  value={this.state.endTime}
+                
                   />
               </div>
             </div>
@@ -117,9 +115,9 @@ export default class Form extends Component {
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
               <FlatButton
                 style={{ marginRight: 5 }}
-                label="Close"
+                label="Remove"
                 backgroundColor={purple50}
-                onClick={this.handleReduce}
+                onClick={this.props.onClickRemove}
               />
               <FlatButton
                 label="Submit"
@@ -129,7 +127,7 @@ export default class Form extends Component {
                     ...this.state,
                     date: this.props.date
                   });
-                  console.log(e);
+
                 }}
               />
             </div>

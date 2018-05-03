@@ -20,7 +20,8 @@ export const Tile = ({ value, index, onClick, eventNames}) => {
           }
         `}</style>
         {value}
-
+        {/* {(eventNames || []).map(event => <h5>{event.date}</h5>) } */}
+     
       </div>
     )
   }
