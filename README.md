@@ -1,5 +1,5 @@
 # calendar-reactjs
-A cool calendar with ReactJS, Material UI, MomentJS, Weather API, NextJs
+A cool calendar with ReactJS, Material UI, MomentJS, Weather API, NextJs. This app is part of the final project in Redi school.
 >hosted on: http://calendar-redi.now.sh/
 ## Features 
 Adding event and Weather API 
